@@ -177,11 +177,11 @@ function checkWon() {
   		}
     }
     
-    // increase level
-    currentLevel.level += 1;
-    
     // switch to new level
     setTimeout(function() {
+      // increase level
+      currentLevel.level += 1;
+      
       switch (currentLevel.level) {
         case 2:
           levelTwo();
