@@ -30,7 +30,7 @@ var game;             // the game
 var tileSize = 100;   // size of each tile, in pixels
 var tileTypes = 5;    // different kinds of tiles
 var gameArray = [];   // the game array, the board will be stored here
-var levelWon = false;   // flag for if the current level has been won yet
+var gameWon = false;   // flag for if the current level has been won yet
 var backgroundHeader = 54;
 
 // the current level
@@ -168,7 +168,7 @@ function checkWon() {
 		}
   }
   
-  if(won) {
+  if(won && !gameWon) {
     ws.play('splash');
     for(var i = 0; i < currentLevel.size; i++){
   		for(var j = 0; j < currentLevel.size; j++){
@@ -217,6 +217,7 @@ function checkWon() {
     }
     
     won = false;
+    gameWon = true;
   }
 }
 
