@@ -890,7 +890,7 @@ function levelSeven() {
   
   gameArray[3][0] = {
     tileType: TILE_TYPES.CURVE,
-    orientation: TILE_ORIENTATIONS.RIGHT_UP,
+    orientation: TILE_ORIENTATIONS.CURVE.RIGHT_UP,
     tileSprite: game.add.sprite(54, backgroundHeader+tileSize*3, 'curve')
   }
   

@@ -9,5 +9,6 @@ Rules:
 - Your workers are lazy and have placed down too many aqueduct parts. Not all tiles will always be used.
 - Lakes are stationary, so they cannot be turned.
 - Some lakes can service multiple towns.
+- There should be only one way to solve each level.
 
 Aqueducts can be played here: https://aqueducts.herokuapp.com/
