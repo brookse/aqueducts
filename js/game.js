@@ -185,18 +185,17 @@ function checkWon() {
     won = false;
     if(!triggered) {
       triggered = true;
+      ws.play('splash');
+      game.add.tween(bucket).to( { alpha: 0 }, Phaser.Timer.SECOND * 2, Phaser.Easing.Linear.None, true, 0, 1000, true);
+      
       // increase level
       currentLevel.level += 1;
       // switch to new level
       switch (currentLevel.level) {
         case 2:
-          ws.play('splash');
-          game.add.tween(bucket).to( { alpha: 0 }, Phaser.Timer.SECOND * 2, Phaser.Easing.Linear.None, true, 0, 1000, true);
           game.time.events.add(Phaser.Timer.SECOND * 2,levelTwo,this);
           break;
         case 3:
-          ws.play('splash');
-          game.add.tween(bucket).to( { alpha: 0 }, Phaser.Timer.SECOND * 2, Phaser.Easing.Linear.None, true, 0, 1000, true);
           game.time.events.add(Phaser.Timer.SECOND * 2,levelThree,this);
           break;
         case 4:
