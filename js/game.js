@@ -180,46 +180,44 @@ function checkWon() {
     
     won = false;
     if(!triggered) {
-      game.time.events.add(Phaser.Timer.SECOND * 2, function() {
-        triggered = true;
-        // increase level
-        currentLevel.level += 1;
-        // switch to new level
-        switch (currentLevel.level) {
-          case 2:
-            levelTwo();
-            break;
-          case 3:
-            levelThree();
-            break;
-          case 4:
-            levelFour();
-            break;
-          case 5:
-            levelFive();
-            break;
-          case 6:
-            levelSix();
-            break;
-          case 7:
-            levelSeven();
-            break;
-          case 8:
-            levelEight();
-            break;
-          case 9:
-            levelNine();
-            break;
-          case 10:
-            levelTen();
-            break;
-          case 11:
-            victory();
-            break;
-          default:
-            console.log('level oops');
-        }
-      }, this);
+      triggered = true;
+      // increase level
+      currentLevel.level += 1;
+      // switch to new level
+      switch (currentLevel.level) {
+        case 2:
+          game.time.events.add(Phaser.Timer.SECOND * 2,levelTwo,this);
+          break;
+        case 3:
+          levelThree();
+          break;
+        case 4:
+          levelFour();
+          break;
+        case 5:
+          levelFive();
+          break;
+        case 6:
+          levelSix();
+          break;
+        case 7:
+          levelSeven();
+          break;
+        case 8:
+          levelEight();
+          break;
+        case 9:
+          levelNine();
+          break;
+        case 10:
+          levelTen();
+          break;
+        case 11:
+          victory();
+          break;
+        default:
+          console.log('level oops');
+      }
     }
   }
 }
@@ -388,7 +386,6 @@ function levelTwo() {
 }
 
 function levelThree() {
-  triggered = false;
   // level size, in tiles, NxN tiles
   currentLevel.size = 3;
 	var angles = [0,90,180,270];
