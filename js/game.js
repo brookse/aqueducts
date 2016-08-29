@@ -217,11 +217,11 @@ function checkWon() {
     }
     
     won = false;
-    gameWon = true;
   }
 }
 
 function victory() {
+  gameWon = true;
   var victory = game.add.sprite(game.world.centerX, game.world.centerY, 'victory');
   victory.alpha = 0;
   victory.anchor.setTo(0.5, 0.5);
