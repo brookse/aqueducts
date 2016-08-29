@@ -185,8 +185,8 @@ function checkWon() {
       case 2:
         setTimeout(function() {
           levelTwo();
-          break;
         }, Phaser.Timer.SECOND * 2);
+        break;
       case 3:
         levelThree();
         break;
