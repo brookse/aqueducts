@@ -177,48 +177,46 @@ function checkWon() {
   		}
     }
     
+    // increase level
+    currentLevel.level += 1;
+    
     // switch to new level
-    setTimeout(function() {
-      // increase level
-      currentLevel.level += 1;
-      
-      switch (currentLevel.level) {
-        case 2:
-          levelTwo();
+    switch (currentLevel.level) {
+      case 2:
+        levelTwo();
+        break;
+      case 3:
+        levelThree();
+        break;
+      case 4:
+        levelFour();
+        break;
+      case 5:
+        levelFive();
+        break;
+      case 6:
+        levelSix();
+        break;
+      case 7:
+        levelSeven();
+        break;
+      case 8:
+        levelEight();
+        break;
+      case 9:
+        levelNine();
+        break;
+      case 10:
+        levelTen();
           break;
-        case 3:
-          levelThree();
-          break;
-        case 4:
-          levelFour();
-          break;
-        case 5:
-          levelFive();
-          break;
-        case 6:
-          levelSix();
-          break;
-        case 7:
-          levelSeven();
-          break;
-        case 8:
-          levelEight();
-          break;
-        case 9:
-          levelNine();
-          break;
-        case 10:
-          levelTen();
-          break;
-        case 11:
-          victory();
-          break;
-        default:
-          console.log('level oops');
-      }
-      
-      won = false;
-    }, Phaser.Timer.SECOND * 2);
+      case 11:
+        victory();
+        break;
+      default:
+        console.log('level oops');
+    }
+    
+    won = false;
   }
 }
 
