@@ -138,9 +138,6 @@ playGame.prototype = {
 function rotateTile() {
   fx.play('rockmove');
 	// rotate tile 90*
-  if(this.key == 'tee') {
-    console.log('old:',this.angle);
-  }
   if(this.key == 'cross' || this.key == 'begin') {
     // do nothing
   } else if(this.key == 'straight') {
@@ -151,9 +148,6 @@ function rotateTile() {
     }
   } else {
     this.angle = (this.angle + 90) % 360;
-  }
-  if(this.key == 'tee') {
-    console.log('new:',this.angle);
   }
 }
 
@@ -183,7 +177,7 @@ function checkWon() {
     
     // increase level
     currentLevel.level += 1;
-    console.log('current level:',currentLevel.level);
+    
     // switch to new level
     switch (currentLevel.level) {
       case 2:
@@ -552,7 +546,7 @@ function levelFour() {
         if(sprite.key == 'straight') {
           sprite.angle = straightAngles[game.rnd.between(0,1)];
         } else if(sprite.key == 'begin') {
-          sprite.angle = TILE_ORIENTATIONS.BEGIN.LEFT;
+          sprite.angle = TILE_ORIENTATIONS.BEGIN.DOWN;
         } else {
           sprite.angle = angles[game.rnd.between(0,3)];	// randomize angle
           while(sprite.angle == gameArray[i][j].orientation) {
