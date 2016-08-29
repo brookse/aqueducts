@@ -180,6 +180,7 @@ function checkWon() {
     game.time.events.add(Phaser.Timer.SECOND * 2, function() {
       // increase level
       currentLevel.level += 1;
+      won = false;
       
       // switch to new level
       switch (currentLevel.level) {
@@ -216,7 +217,6 @@ function checkWon() {
         default:
           console.log('level oops');
       }
-      won = false;
     }, this);
   }
 }
