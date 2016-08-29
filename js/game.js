@@ -181,42 +181,42 @@ function checkWon() {
     currentLevel.level += 1;
     
     // switch to new level
-    switch (currentLevel.level) {
-      case 2:
-        setTimeout(function() {
+    setTimeout(function() {
+      switch (currentLevel.level) {
+        case 2:
           levelTwo();
-        }, Phaser.Timer.SECOND * 2);
-        break;
-      case 3:
-        levelThree();
-        break;
-      case 4:
-        levelFour();
-        break;
-      case 5:
-        levelFive();
-        break;
-      case 6:
-        levelSix();
-        break;
-      case 7:
-        levelSeven();
-        break;
-      case 8:
-        levelEight();
-        break;
-      case 9:
-        levelNine();
-        break;
-      case 10:
-        levelTen();
           break;
-      case 11:
-        victory();
-        break;
-      default:
-        console.log('level oops');
-    }
+        case 3:
+          levelThree();
+          break;
+        case 4:
+          levelFour();
+          break;
+        case 5:
+          levelFive();
+          break;
+        case 6:
+          levelSix();
+          break;
+        case 7:
+          levelSeven();
+          break;
+        case 8:
+          levelEight();
+          break;
+        case 9:
+          levelNine();
+          break;
+        case 10:
+          levelTen();
+            break;
+        case 11:
+          victory();
+          break;
+        default:
+          console.log('level oops');
+      }
+    }, Phaser.Timer.SECOND * 2);
     
     won = false;
   }
