@@ -122,6 +122,10 @@ playGame.prototype = {
     rm = game.add.audio('rockmove');
     ws = game.add.audio('splash');
     
+    bucket = game.add.sprite(254, 254, 'bucket');
+    bucket.anchor.setTo(0.5, 0.5);
+    bucket.alpha = 0;
+    
     rm.addMarker('rockmove', 0.2, 1);
     ws.addMarker('splash', 0, 1);
 		
@@ -172,8 +176,7 @@ function checkWon() {
   }
   
   if(won && !gameWon) {
-    bucket = game.add.sprite(254, 254, 'bucket');
-    bucket.anchor.setTo(0.5, 0.5);
+    bucket.alpha = 1;
     ws.play('splash');
     for(var i = 0; i < currentLevel.size; i++){
   		for(var j = 0; j < currentLevel.size; j++){
@@ -295,7 +298,7 @@ function levelOne() {
 
 function levelTwo() {
   triggered = false;
-  bucket.destroy();
+  bucket.alpha = 0;
   // level size, in tiles, NxN tiles
   currentLevel.size = 3;
 	var angles = [0,90,180,270];
