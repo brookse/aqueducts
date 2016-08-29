@@ -82,12 +82,15 @@ playGame.prototype = {
     game.load.image('victory', '/assets/images/victory-banner.png');
     
     game.load.audio('rockmove', '/assets/sounds/rockmove.wav');
+    game.load.audio('splash', '/assets/sounds/splash.wav');
 	},
 	
 	create: function() { 
     game.add.sprite(0, 0, 'background');
     fx = game.add.audio('rockmove');
+    fx.addMultiple = true;
     fx.addMarker('rockmove', 0.2, 1);
+    fx.addMarker('splash', 0, 1);
 		
 		levelOne();   // begin with level one
 	},
@@ -136,6 +139,7 @@ function checkWon() {
   }
   
   if(won) {
+    fx.play('splash');
     for(var i = 0; i < currentLevel.size; i++){
   		for(var j = 0; j < currentLevel.size; j++){
   			// add listener and anchor of sprite
