@@ -185,38 +185,38 @@ function checkWon() {
       ws.play('splash');
       bucket = game.add.sprite(254, 254, 'bucket');
       bucket.anchor.setTo(0.5, 0.5);
-      game.add.tween(bucket).to( { alpha: 0 }, Phaser.Timer.SECOND * 2, Phaser.Easing.Linear.None, true);
+      game.add.tween(bucket).to( { alpha: 0 }, Phaser.Timer.SECOND * 3, Phaser.Easing.Linear.None, true);
       
       // increase level
       currentLevel.level += 1;
       // switch to new level
       switch (currentLevel.level) {
         case 2:
-          game.time.events.add(Phaser.Timer.SECOND * 2,levelTwo,this);
+          game.time.events.add(Phaser.Timer.SECOND * 3,levelTwo,this);
           break;
         case 3:
-          game.time.events.add(Phaser.Timer.SECOND * 2,levelThree,this);
+          game.time.events.add(Phaser.Timer.SECOND * 3,levelThree,this);
           break;
         case 4:
-          game.time.events.add(Phaser.Timer.SECOND * 2,levelFour,this);
+          game.time.events.add(Phaser.Timer.SECOND * 3,levelFour,this);
           break;
         case 5:
-          game.time.events.add(Phaser.Timer.SECOND * 2,levelFive,this);
+          game.time.events.add(Phaser.Timer.SECOND * 3,levelFive,this);
           break;
         case 6:
-          game.time.events.add(Phaser.Timer.SECOND * 2,levelSix,this);
+          game.time.events.add(Phaser.Timer.SECOND * 3,levelSix,this);
           break;
         case 7:
-          game.time.events.add(Phaser.Timer.SECOND * 2,levelSeven,this);
+          game.time.events.add(Phaser.Timer.SECOND * 3,levelSeven,this);
           break;
         case 8:
-          game.time.events.add(Phaser.Timer.SECOND * 2,levelEight,this);
+          game.time.events.add(Phaser.Timer.SECOND * 3,levelEight,this);
           break;
         case 9:
-          game.time.events.add(Phaser.Timer.SECOND * 2,levelNine,this);
+          game.time.events.add(Phaser.Timer.SECOND * 3,levelNine,this);
           break;
         case 10:
-          game.time.events.add(Phaser.Timer.SECOND * 2,levelTen,this);
+          game.time.events.add(Phaser.Timer.SECOND * 3,levelTen,this);
           break;
         case 11:
           victory();
