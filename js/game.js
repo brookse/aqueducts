@@ -32,6 +32,7 @@ var tileTypes = 5;    // different kinds of tiles
 var gameArray = [];   // the game array, the board will be stored here
 var gameWon = false;   // flag for if the current level has been won yet
 var backgroundHeader = 54;
+var triggered = false;
 
 // the current level
 var currentLevel = {
@@ -177,46 +178,49 @@ function checkWon() {
   		}
     }
     
-    // increase level
-    currentLevel.level += 1;
     won = false;
-    game.time.events.add(Phaser.Timer.SECOND * 2, function() {
-      // switch to new level
-      switch (currentLevel.level) {
-        case 2:
-          levelTwo();
-          break;
-        case 3:
-          levelThree();
-          break;
-        case 4:
-          levelFour();
-          break;
-        case 5:
-          levelFive();
-          break;
-        case 6:
-          levelSix();
-          break;
-        case 7:
-          levelSeven();
-          break;
-        case 8:
-          levelEight();
-          break;
-        case 9:
-          levelNine();
-          break;
-        case 10:
-          levelTen();
-          break;
-        case 11:
-          victory();
-          break;
-        default:
-          console.log('level oops');
-      }
-    }, this);
+    if(!triggered) {
+      game.time.events.add(Phaser.Timer.SECOND * 2, function() {
+        triggered = true;
+        // increase level
+        currentLevel.level += 1;
+        // switch to new level
+        switch (currentLevel.level) {
+          case 2:
+            levelTwo();
+            break;
+          case 3:
+            levelThree();
+            break;
+          case 4:
+            levelFour();
+            break;
+          case 5:
+            levelFive();
+            break;
+          case 6:
+            levelSix();
+            break;
+          case 7:
+            levelSeven();
+            break;
+          case 8:
+            levelEight();
+            break;
+          case 9:
+            levelNine();
+            break;
+          case 10:
+            levelTen();
+            break;
+          case 11:
+            victory();
+            break;
+          default:
+            console.log('level oops');
+        }
+      }, this);
+    }
   }
 }
 
@@ -380,6 +384,7 @@ function levelTwo() {
       }
     }
   }
+  triggered = false;
 }
 
 function levelThree() {
