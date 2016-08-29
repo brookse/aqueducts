@@ -138,6 +138,9 @@ playGame.prototype = {
 function rotateTile() {
   fx.play('rockmove');
 	// rotate tile 90*
+  if(this.key == 'tee') {
+    console.log('old:',this.angle);
+  }
   if(this.key == 'cross' || this.key == 'begin') {
     // do nothing
   } else if(this.key == 'straight') {
@@ -148,6 +151,9 @@ function rotateTile() {
     }
   } else {
     this.angle = (this.angle + 90) % 360;
+  }
+  if(this.key == 'tee') {
+    console.log('new:',this.angle);
   }
 }
 
