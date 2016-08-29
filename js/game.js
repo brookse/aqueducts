@@ -177,9 +177,10 @@ function checkWon() {
   		}
     }
     
+    // increase level
+    currentLevel.level += 1;
+    
     game.time.events.add(Phaser.Timer.SECOND * 2, function() {
-      // increase level
-      currentLevel.level += 1;
       won = false;
       
       // switch to new level
