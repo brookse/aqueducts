@@ -172,9 +172,6 @@ function checkWon() {
   }
   
   if(won && !gameWon) {
-    bucket = game.add.sprite(254, 254, 'bucket');
-    bucket.anchor.setTo(0.5, 0.5);
-    bucket.alpha = 1;
     for(var i = 0; i < currentLevel.size; i++){
   		for(var j = 0; j < currentLevel.size; j++){
   			// add listener and anchor of sprite
@@ -186,6 +183,8 @@ function checkWon() {
     if(!triggered) {
       triggered = true;
       ws.play('splash');
+      bucket = game.add.sprite(254, 254, 'bucket');
+      bucket.anchor.setTo(0.5, 0.5);
       game.add.tween(bucket).to( { alpha: 0 }, Phaser.Timer.SECOND * 2, Phaser.Easing.Linear.None, true, 0, 1000, true);
       
       // increase level
