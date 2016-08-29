@@ -185,7 +185,7 @@ function checkWon() {
       ws.play('splash');
       bucket = game.add.sprite(254, 254, 'bucket');
       bucket.anchor.setTo(0.5, 0.5);
-      game.add.tween(bucket).to( { alpha: 0 }, Phaser.Timer.SECOND * 2, Phaser.Easing.Linear.None, true, 0, 1000, true);
+      game.add.tween(bucket).to( { alpha: 0 }, Phaser.Timer.SECOND * 2, Phaser.Easing.Linear.None, true);
       
       // increase level
       currentLevel.level += 1;
