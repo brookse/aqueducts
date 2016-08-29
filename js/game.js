@@ -209,16 +209,16 @@ function checkWon() {
           break;
         case 10:
           levelTen();
-            break;
+          break;
         case 11:
           victory();
           break;
         default:
           console.log('level oops');
       }
+      
+      won = false;
     }, Phaser.Timer.SECOND * 2);
-    
-    won = false;
   }
 }
 
