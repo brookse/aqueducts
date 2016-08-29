@@ -1313,7 +1313,7 @@ function levelTen() {
   
   gameArray[0][4] = {
     tileType: TILE_TYPES.BEGIN,
-    orientation: TILE_ORIENTATIONS.LEFT,
+    orientation: TILE_ORIENTATIONS.BEGIN.LEFT,
     tileSprite: game.add.sprite(tileSize*4+54, backgroundHeader, 'begin')
   }
   
@@ -1415,7 +1415,7 @@ function levelTen() {
   
   gameArray[4][1] = {
     tileType: TILE_TYPES.CURVE,
-    orientation: TILE_ORIENTATIONS.CURVE.RIGHT_DOWN,
+    orientation: TILE_ORIENTATIONS.CURVE.RIGHT_UP,
     tileSprite: game.add.sprite(tileSize+54, backgroundHeader+tileSize*4, 'curve')
   }
   
