@@ -888,7 +888,6 @@ function levelSeven() {
     tileSprite: game.add.sprite(tileSize*3+54, backgroundHeader+tileSize*2, 'tee')
   }
   
-  
   gameArray[3][0] = {
     tileType: TILE_TYPES.CURVE,
     orientation: TILE_ORIENTATIONS.RIGHT_UP,
@@ -897,7 +896,7 @@ function levelSeven() {
   
   gameArray[3][1] = {
     tileType: TILE_TYPES.STRAIGHT,
-    orientation: TILE_ORIENTATIONS.STRAIGHT.VERTICAL,
+    orientation: TILE_ORIENTATIONS.STRAIGHT.HORIZONTAL,
     tileSprite: game.add.sprite(tileSize+54, backgroundHeader+tileSize*3, 'straight')
   }
   

@@ -8,5 +8,6 @@ Rules:
 - Path from lake to town must be complete. You don't want to lose water!
 - Your workers are lazy and have placed down too many aqueduct parts. Not all tiles will always be used.
 - Lakes are stationary, so they cannot be turned.
+- Some lakes can service multiple towns.
 
 Aqueducts can be played here: https://aqueducts.herokuapp.com/
