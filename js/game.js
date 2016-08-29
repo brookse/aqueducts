@@ -189,28 +189,28 @@ function checkWon() {
           game.time.events.add(Phaser.Timer.SECOND * 2,levelTwo,this);
           break;
         case 3:
-          levelThree();
+          game.time.events.add(Phaser.Timer.SECOND * 2,levelThree,this);
           break;
         case 4:
-          levelFour();
+          game.time.events.add(Phaser.Timer.SECOND * 2,levelFour,this);
           break;
         case 5:
-          levelFive();
+          game.time.events.add(Phaser.Timer.SECOND * 2,levelFive,this);
           break;
         case 6:
-          levelSix();
+          game.time.events.add(Phaser.Timer.SECOND * 2,levelSix,this);
           break;
         case 7:
-          levelSeven();
+          game.time.events.add(Phaser.Timer.SECOND * 2,levelSeven,this);
           break;
         case 8:
-          levelEight();
+          game.time.events.add(Phaser.Timer.SECOND * 2,levelEight,this);
           break;
         case 9:
-          levelNine();
+          game.time.events.add(Phaser.Timer.SECOND * 2,levelNine,this);
           break;
         case 10:
-          levelTen();
+          game.time.events.add(Phaser.Timer.SECOND * 2,levelTen,this);
           break;
         case 11:
           victory();
@@ -386,6 +386,7 @@ function levelTwo() {
 }
 
 function levelThree() {
+  triggered = false;
   // level size, in tiles, NxN tiles
   currentLevel.size = 3;
 	var angles = [0,90,180,270];
@@ -481,6 +482,7 @@ function levelThree() {
 }
 
 function levelFour() {
+  triggered = false;
   // level size, in tiles, NxN tiles
   currentLevel.size = 3;
 	var angles = [0,90,180,270];
@@ -576,6 +578,7 @@ function levelFour() {
 }
 
 function levelFive() {
+  triggered = false;
   // level size, in tiles, NxN tiles
   currentLevel.size = 3;
 	var angles = [0,90,180,270];
@@ -671,6 +674,7 @@ function levelFive() {
 }
 
 function levelSix() {
+  triggered = false;
   // level size, in tiles, NxN tiles
   currentLevel.size = 4;
 	var angles = [0,90,180,270];
@@ -810,6 +814,7 @@ function levelSix() {
 }
 
 function levelSeven() {
+  triggered = false;
   // level size, in tiles, NxN tiles
   currentLevel.size = 4;
 	var angles = [0,90,180,270];
@@ -948,6 +953,7 @@ function levelSeven() {
 }
 
 function levelEight() {
+  triggered = false;
   // level size, in tiles, NxN tiles
   currentLevel.size = 4;
 	var angles = [0,90,180,270];
@@ -1087,6 +1093,7 @@ function levelEight() {
 }
 
 function levelNine() {
+  triggered = false;
   // level size, in tiles, NxN tiles
   currentLevel.size = 5;
 	var angles = [0,90,180,270];
@@ -1280,6 +1287,7 @@ function levelNine() {
 }
 
 function levelTen() {
+  triggered = false;
   // level size, in tiles, NxN tiles
   currentLevel.size = 5;
 	var angles = [0,90,180,270];
