@@ -33,6 +33,7 @@ var gameArray = [];   // the game array, the board will be stored here
 var gameWon = false;   // flag for if the current level has been won yet
 var backgroundHeader = 54;
 var triggered = false;
+var bucket;
 
 // the current level
 var currentLevel = {
@@ -110,6 +111,7 @@ playGame.prototype = {
     game.load.image('tee', '/assets/images/tee.png');
     
     game.load.image('victory', '/assets/images/victory-banner.png');
+    game.load.image('bucket', '/assets/images/bucket.png');
     
     game.load.audio('rockmove', '/assets/sounds/rockmove.wav');
     game.load.audio('splash', '/assets/sounds/splash.wav');
@@ -170,6 +172,8 @@ function checkWon() {
   }
   
   if(won && !gameWon) {
+    bucket = game.add.sprite(254, 254, 'bucket');
+    bucket.anchor.setTo(0.5, 0.5);
     ws.play('splash');
     for(var i = 0; i < currentLevel.size; i++){
   		for(var j = 0; j < currentLevel.size; j++){
@@ -291,6 +295,7 @@ function levelOne() {
 
 function levelTwo() {
   triggered = false;
+  bucket.destroy();
   // level size, in tiles, NxN tiles
   currentLevel.size = 3;
 	var angles = [0,90,180,270];
@@ -387,6 +392,7 @@ function levelTwo() {
 
 function levelThree() {
   triggered = false;
+  bucket.destroy();
   // level size, in tiles, NxN tiles
   currentLevel.size = 3;
 	var angles = [0,90,180,270];
