@@ -292,6 +292,7 @@ function levelOne() {
 }
 
 function levelTwo() {
+  triggered = false;
   // level size, in tiles, NxN tiles
   currentLevel.size = 3;
 	var angles = [0,90,180,270];
@@ -384,10 +385,10 @@ function levelTwo() {
       }
     }
   }
-  triggered = false;
 }
 
 function levelThree() {
+  triggered = false;
   // level size, in tiles, NxN tiles
   currentLevel.size = 3;
 	var angles = [0,90,180,270];
