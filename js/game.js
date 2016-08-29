@@ -93,7 +93,8 @@ window.onload = function() {
 }
 
 var playGame = function(game){}
-var fx;
+var rm;
+var wp;
 
 playGame.prototype = {
 	preload: function() {
@@ -115,10 +116,11 @@ playGame.prototype = {
 	
 	create: function() { 
     game.add.sprite(0, 0, 'background');
-    fx = game.add.audio('rockmove');
-    fx.addMultiple = true;
-    fx.addMarker('rockmove', 0.2, 1);
-    fx.addMarker('splash', 0, 1);
+    rm = game.add.audio('rockmove');
+    ws = game.add.audio('splash');
+    
+    rm.addMarker('rockmove', 0.2, 1);
+    ws.addMarker('splash', 0, 1);
 		
 		levelOne();   // begin with level one
 	},
@@ -136,7 +138,7 @@ playGame.prototype = {
 
 /* below are functions for game logic */
 function rotateTile() {
-  fx.play('rockmove');
+  rm.play('rockmove');
 	// rotate tile 90*
   if(this.key == 'cross' || this.key == 'begin') {
     // do nothing
@@ -167,7 +169,7 @@ function checkWon() {
   }
   
   if(won) {
-    fx.play('splash');
+    ws.play('splash');
     for(var i = 0; i < currentLevel.size; i++){
   		for(var j = 0; j < currentLevel.size; j++){
   			// add listener and anchor of sprite
@@ -199,6 +201,15 @@ function checkWon() {
         levelSeven();
         break;
       case 8:
+        levelEight();
+        break;
+      case 9:
+        levelNine();
+        break;
+      case 10:
+        levelTen();
+          break;
+      case 11:
         victory();
         break;
       default:
@@ -796,6 +807,284 @@ function levelSix() {
 
 function levelSeven() {
   // level size, in tiles, NxN tiles
+  currentLevel.size = 4;
+	var angles = [0,90,180,270];
+  var straightAngles = [0,-90];
+
+  gameArray[0] = [];
+  gameArray[1] = [];
+  gameArray[2] = [];
+  gameArray[3] = [];
+  
+  gameArray[0][0] = {
+    tileType: TILE_TYPES.CURVE,
+    orientation: TILE_ORIENTATIONS.CURVE.RIGHT_DOWN,
+    tileSprite: game.add.sprite(54, backgroundHeader, 'curve')
+  }
+  
+  gameArray[0][1] = {
+    tileType: TILE_TYPES.STRAIGHT,
+    orientation: TILE_ORIENTATIONS.STRAIGHT.HORIZONTAL,
+    tileSprite: game.add.sprite(tileSize+54, backgroundHeader, 'straight')
+  }
+  
+  gameArray[0][2] = {
+    tileType: TILE_TYPES.BEGIN,
+    orientation: TILE_ORIENTATIONS.BEGIN.LEFT,
+    tileSprite: game.add.sprite(tileSize*2+54, backgroundHeader, 'begin')
+  }
+  
+  gameArray[0][3] = {
+    tileType: TILE_TYPES.CURVE,
+    orientation: TILE_ORIENTATIONS.NULL,
+    tileSprite: game.add.sprite(tileSize*3+54, backgroundHeader, 'curve')
+  }
+  
+  gameArray[1][0] = {
+    tileType: TILE_TYPES.TEE,
+    orientation: TILE_ORIENTATIONS.TEE.LEFT,
+    tileSprite: game.add.sprite(54, backgroundHeader+tileSize, 'tee')
+  }
+  
+  gameArray[1][1] = {
+    tileType: TILE_TYPES.STRAIGHT,
+    orientation: TILE_ORIENTATIONS.STRAIGHT.HORIZONTAL,
+    tileSprite: game.add.sprite(tileSize+54, backgroundHeader+tileSize, 'straight')
+  }
+  
+  gameArray[1][2] = {
+    tileType: TILE_TYPES.STRAIGHT,
+    orientation: TILE_ORIENTATIONS.STRAIGHT.HORIZONTAL,
+    tileSprite: game.add.sprite(tileSize*2+54, backgroundHeader+tileSize, 'straight')
+  }
+  
+  gameArray[1][3] = {
+    tileType: TILE_TYPES.CURVE,
+    orientation: TILE_ORIENTATIONS.CURVE.LEFT_DOWN,
+    tileSprite: game.add.sprite(tileSize*3+54, backgroundHeader+tileSize, 'curve')
+  }
+  
+  gameArray[2][0] = {
+    tileType: TILE_TYPES.STRAIGHT,
+    orientation: TILE_ORIENTATIONS.STRAIGHT.VERTICAL,
+    tileSprite: game.add.sprite(54, backgroundHeader+tileSize*2, 'straight')
+  }
+  
+  gameArray[2][1] = {
+    tileType: TILE_TYPES.STRAIGHT,
+    orientation: TILE_ORIENTATIONS.NULL,
+    tileSprite: game.add.sprite(tileSize+54, backgroundHeader+tileSize*2, 'straight')
+  }
+  
+  gameArray[2][2] = {
+    tileType: TILE_TYPES.CURVE,
+    orientation: TILE_ORIENTATIONS.CURVE.RIGHT_DOWN,
+    tileSprite: game.add.sprite(tileSize*2+54, backgroundHeader+tileSize*2, 'curve')
+  }
+  
+  gameArray[2][3] = {
+    tileType: TILE_TYPES.TEE,
+    orientation: TILE_ORIENTATIONS.TEE.RIGHT,
+    tileSprite: game.add.sprite(tileSize*3+54, backgroundHeader+tileSize*2, 'tee')
+  }
+  
+  
+  gameArray[3][0] = {
+    tileType: TILE_TYPES.CURVE,
+    orientation: TILE_ORIENTATIONS.RIGHT_UP,
+    tileSprite: game.add.sprite(54, backgroundHeader+tileSize*3, 'curve')
+  }
+  
+  gameArray[3][1] = {
+    tileType: TILE_TYPES.STRAIGHT,
+    orientation: TILE_ORIENTATIONS.STRAIGHT.VERTICAL,
+    tileSprite: game.add.sprite(tileSize+54, backgroundHeader+tileSize*3, 'straight')
+  }
+  
+  gameArray[3][2] = {
+    tileType: TILE_TYPES.CURVE,
+    orientation: TILE_ORIENTATIONS.CURVE.LEFT_UP,
+    tileSprite: game.add.sprite(tileSize*2+54, backgroundHeader+tileSize*3, 'curve')
+  }
+  
+  gameArray[3][3] = {
+    tileType: TILE_TYPES.END,
+    orientation: TILE_ORIENTATIONS.END.UP,
+    tileSprite: game.add.sprite(tileSize*3+54, backgroundHeader+tileSize*3, 'end')
+  }
+	
+	for(var i = 0; i < currentLevel.size; i++){
+		for(var j = 0; j < currentLevel.size; j++){
+			// add listener and anchor of sprite
+      var sprite = gameArray[i][j].tileSprite;
+      
+      if(sprite.key != 'begin') {
+        sprite.inputEnabled = true;
+        sprite.input.useHandCursor = true;
+      }
+      
+			sprite.events.onInputDown.add(rotateTile, sprite);
+			sprite.anchor.setTo(0.5, 0.5);
+      
+      if(sprite.key != 'cross') {
+        if(sprite.key == 'straight') {
+          sprite.angle = straightAngles[game.rnd.between(0,1)];
+        } else if(sprite.key == 'begin') {
+          sprite.angle = TILE_ORIENTATIONS.BEGIN.LEFT;
+        } else {
+          sprite.angle = angles[game.rnd.between(0,3)];	// randomize angle
+          while(sprite.angle == gameArray[i][j].orientation) {
+      			sprite.angle = angles[game.rnd.between(0,3)];	// randomize angle
+          }
+        }
+      } else {
+        sprite.angle = 0;
+      }
+    }
+  }
+}
+
+function levelEight() {
+  // level size, in tiles, NxN tiles
+  currentLevel.size = 4;
+	var angles = [0,90,180,270];
+  var straightAngles = [0,-90];
+
+  gameArray[0] = [];
+  gameArray[1] = [];
+  gameArray[2] = [];
+  gameArray[3] = [];
+  
+  gameArray[0][0] = {
+    tileType: TILE_TYPES.CURVE,
+    orientation: TILE_ORIENTATIONS.NULL,
+    tileSprite: game.add.sprite(54, backgroundHeader, 'curve')
+  }
+  
+  gameArray[0][1] = {
+    tileType: TILE_TYPES.BEGIN,
+    orientation: TILE_ORIENTATIONS.BEGIN.DOWN,
+    tileSprite: game.add.sprite(tileSize+54, backgroundHeader, 'begin')
+  }
+  
+  gameArray[0][2] = {
+    tileType: TILE_TYPES.CURVE,
+    orientation: TILE_ORIENTATIONS.NULL,
+    tileSprite: game.add.sprite(tileSize*2+54, backgroundHeader, 'curve')
+  }
+  
+  gameArray[0][3] = {
+    tileType: TILE_TYPES.CURVE,
+    orientation: TILE_ORIENTATIONS.NULL,
+    tileSprite: game.add.sprite(tileSize*3+54, backgroundHeader, 'curve')
+  }
+  
+  gameArray[1][0] = {
+    tileType: TILE_TYPES.CURVE,
+    orientation: TILE_ORIENTATIONS.CURVE.RIGHT_DOWN,
+    tileSprite: game.add.sprite(54, backgroundHeader+tileSize, 'curve')
+  }
+  
+  gameArray[1][1] = {
+    tileType: TILE_TYPES.CURVE,
+    orientation: TILE_ORIENTATIONS.CURVE.LEFT_UP,
+    tileSprite: game.add.sprite(tileSize+54, backgroundHeader+tileSize, 'curve')
+  }
+  
+  gameArray[1][2] = {
+    tileType: TILE_TYPES.TEE,
+    orientation: TILE_ORIENTATIONS.NULL,
+    tileSprite: game.add.sprite(tileSize*2+54, backgroundHeader+tileSize, 'tee')
+  }
+  
+  gameArray[1][3] = {
+    tileType: TILE_TYPES.CURVE,
+    orientation: TILE_ORIENTATIONS.NULL,
+    tileSprite: game.add.sprite(tileSize*3+54, backgroundHeader+tileSize, 'curve')
+  }
+  
+  gameArray[2][0] = {
+    tileType: TILE_TYPES.CURVE,
+    orientation: TILE_ORIENTATIONS.CURVE.RIGHT_UP,
+    tileSprite: game.add.sprite(54, backgroundHeader+tileSize*2, 'curve')
+  }
+  
+  gameArray[2][1] = {
+    tileType: TILE_TYPES.CURVE,
+    orientation: TILE_ORIENTATIONS.CURVE.LEFT_DOWN,
+    tileSprite: game.add.sprite(tileSize+54, backgroundHeader+tileSize*2, 'curve')
+  }
+  
+  gameArray[2][2] = {
+    tileType: TILE_TYPES.CURVE,
+    orientation: TILE_ORIENTATIONS.CURVE.RIGHT_DOWN,
+    tileSprite: game.add.sprite(tileSize*2+54, backgroundHeader+tileSize*2, 'curve')
+  }
+  
+  gameArray[2][3] = {
+    tileType: TILE_TYPES.CURVE,
+    orientation: TILE_ORIENTATIONS.CURVE.LEFT_DOWN,
+    tileSprite: game.add.sprite(tileSize*3+54, backgroundHeader+tileSize*2, 'curve')
+  }
+  
+  
+  gameArray[3][0] = {
+    tileType: TILE_TYPES.CURVE,
+    orientation: TILE_ORIENTATIONS.NULL,
+    tileSprite: game.add.sprite(54, backgroundHeader+tileSize*3, 'curve')
+  }
+  
+  gameArray[3][1] = {
+    tileType: TILE_TYPES.CURVE,
+    orientation: TILE_ORIENTATIONS.CURVE.RIGHT_UP,
+    tileSprite: game.add.sprite(tileSize+54, backgroundHeader+tileSize*3, 'curve')
+  }
+  
+  gameArray[3][2] = {
+    tileType: TILE_TYPES.CURVE,
+    orientation: TILE_ORIENTATIONS.CURVE.LEFT_UP,
+    tileSprite: game.add.sprite(tileSize*2+54, backgroundHeader+tileSize*3, 'curve')
+  }
+  
+  gameArray[3][3] = {
+    tileType: TILE_TYPES.END,
+    orientation: TILE_ORIENTATIONS.END.UP,
+    tileSprite: game.add.sprite(tileSize*3+54, backgroundHeader+tileSize*3, 'end')
+  }
+	
+	for(var i = 0; i < currentLevel.size; i++){
+		for(var j = 0; j < currentLevel.size; j++){
+			// add listener and anchor of sprite
+      var sprite = gameArray[i][j].tileSprite;
+      
+      if(sprite.key != 'begin') {
+        sprite.inputEnabled = true;
+        sprite.input.useHandCursor = true;
+      }
+      
+			sprite.events.onInputDown.add(rotateTile, sprite);
+			sprite.anchor.setTo(0.5, 0.5);
+      
+      if(sprite.key != 'cross') {
+        if(sprite.key == 'straight') {
+          sprite.angle = straightAngles[game.rnd.between(0,1)];
+        } else if(sprite.key == 'begin') {
+          sprite.angle = TILE_ORIENTATIONS.BEGIN.DOWN;
+        } else {
+          sprite.angle = angles[game.rnd.between(0,3)];	// randomize angle
+          while(sprite.angle == gameArray[i][j].orientation) {
+      			sprite.angle = angles[game.rnd.between(0,3)];	// randomize angle
+          }
+        }
+      } else {
+        sprite.angle = 0;
+      }
+    }
+  }
+}
+
+function levelNine() {
+  // level size, in tiles, NxN tiles
   currentLevel.size = 5;
 	var angles = [0,90,180,270];
   var straightAngles = [0,-90];
@@ -974,6 +1263,199 @@ function levelSeven() {
           sprite.angle = straightAngles[game.rnd.between(0,1)];
         } else if(sprite.key == 'begin') {
           sprite.angle = TILE_ORIENTATIONS.BEGIN.DOWN;
+        } else {
+          sprite.angle = angles[game.rnd.between(0,3)];	// randomize angle
+          while(sprite.angle == gameArray[i][j].orientation) {
+      			sprite.angle = angles[game.rnd.between(0,3)];	// randomize angle
+          }
+        }
+      } else {
+        sprite.angle = 0;
+      }
+    }
+  }
+}
+
+function levelTen() {
+  // level size, in tiles, NxN tiles
+  currentLevel.size = 5;
+	var angles = [0,90,180,270];
+  var straightAngles = [0,-90];
+
+  gameArray[0] = [];
+  gameArray[1] = [];
+  gameArray[2] = [];
+  gameArray[3] = [];
+  gameArray[4] = [];
+  
+  gameArray[0][0] = {
+    tileType: TILE_TYPES.CURVE,
+    orientation: TILE_ORIENTATIONS.NULL,
+    tileSprite: game.add.sprite(54, backgroundHeader, 'curve')
+  }
+  
+  gameArray[0][1] = {
+    tileType: TILE_TYPES.CURVE,
+    orientation: TILE_ORIENTATIONS.CURVE.RIGHT_DOWN,
+    tileSprite: game.add.sprite(tileSize+54, backgroundHeader, 'curve')
+  }
+  
+  gameArray[0][2] = {
+    tileType: TILE_TYPES.TEE,
+    orientation: TILE_ORIENTATIONS.TEE.UP,
+    tileSprite: game.add.sprite(tileSize*2+54, backgroundHeader, 'tee')
+  }
+  
+  gameArray[0][3] = {
+    tileType: TILE_TYPES.STRAIGHT,
+    orientation: TILE_ORIENTATIONS.STRAIGHT.HORIZONTAL,
+    tileSprite: game.add.sprite(tileSize*3+54, backgroundHeader, 'straight')
+  }
+  
+  gameArray[0][4] = {
+    tileType: TILE_TYPES.BEGIN,
+    orientation: TILE_ORIENTATIONS.LEFT,
+    tileSprite: game.add.sprite(tileSize*4+54, backgroundHeader, 'begin')
+  }
+  
+  gameArray[1][0] = {
+    tileType: TILE_TYPES.CURVE,
+    orientation: TILE_ORIENTATIONS.CURVE.RIGHT_DOWN,
+    tileSprite: game.add.sprite(54, backgroundHeader+tileSize, 'curve')
+  }
+  
+  gameArray[1][1] = {
+    tileType: TILE_TYPES.CROSS,
+    orientation: TILE_ORIENTATIONS.CROSS.ONLY,
+    tileSprite: game.add.sprite(tileSize+54, backgroundHeader+tileSize, 'cross')
+  }
+  
+  gameArray[1][2] = {
+    tileType: TILE_TYPES.TEE,
+    orientation: TILE_ORIENTATIONS.TEE.DOWN,
+    tileSprite: game.add.sprite(tileSize*2+54, backgroundHeader+tileSize, 'tee')
+  }
+  
+  gameArray[1][3] = {
+    tileType: TILE_TYPES.STRAIGHT,
+    orientation: TILE_ORIENTATIONS.STRAIGHT.HORIZONTAL,
+    tileSprite: game.add.sprite(tileSize*3+54, backgroundHeader+tileSize, 'straight')
+  }
+  
+  gameArray[1][4] = {
+    tileType: TILE_TYPES.CURVE,
+    orientation: TILE_ORIENTATIONS.CURVE.LEFT_DOWN,
+    tileSprite: game.add.sprite(tileSize*4+54, backgroundHeader+tileSize, 'curve')
+  }
+  
+  gameArray[2][0] = {
+    tileType: TILE_TYPES.TEE,
+    orientation: TILE_ORIENTATIONS.TEE.LEFT,
+    tileSprite: game.add.sprite(54, backgroundHeader+tileSize*2, 'tee')
+  }
+  
+  gameArray[2][1] = {
+    tileType: TILE_TYPES.CURVE,
+    orientation: TILE_ORIENTATIONS.CURVE.LEFT_UP,
+    tileSprite: game.add.sprite(tileSize+54, backgroundHeader+tileSize*2, 'curve')
+  }
+  
+  gameArray[2][2] = {
+    tileType: TILE_TYPES.STRAIGHT,
+    orientation: TILE_ORIENTATIONS.NULL,
+    tileSprite: game.add.sprite(tileSize*2+54, backgroundHeader+tileSize*2, 'straight')
+  }
+  
+  gameArray[2][3] = {
+    tileType: TILE_TYPES.STRAIGHT,
+    orientation: TILE_ORIENTATIONS.NULL,
+    tileSprite: game.add.sprite(tileSize*3+54, backgroundHeader+tileSize*2, 'straight')
+  }
+  
+  gameArray[2][4] = {
+    tileType: TILE_TYPES.STRAIGHT,
+    orientation: TILE_ORIENTATIONS.STRAIGHT.VERTICAL,
+    tileSprite: game.add.sprite(tileSize*4+54, backgroundHeader+tileSize*2, 'straight')
+  }
+  
+  gameArray[3][0] = {
+    tileType: TILE_TYPES.TEE,
+    orientation: TILE_ORIENTATIONS.TEE.LEFT,
+    tileSprite: game.add.sprite(54, backgroundHeader+tileSize*3, 'tee')
+  }
+  
+  gameArray[3][1] = {
+    tileType: TILE_TYPES.CURVE,
+    orientation: TILE_ORIENTATIONS.CURVE.LEFT_DOWN,
+    tileSprite: game.add.sprite(tileSize+54, backgroundHeader+tileSize*3, 'curve')
+  }
+  
+  gameArray[3][2] = {
+    tileType: TILE_TYPES.STRAIGHT,
+    orientation: TILE_ORIENTATIONS.NULL,
+    tileSprite: game.add.sprite(tileSize*2+54, backgroundHeader+tileSize*3, 'straight')
+  }
+  
+  gameArray[3][3] = {
+    tileType: TILE_TYPES.CURVE,
+    orientation: TILE_ORIENTATIONS.CURVE.RIGHT_DOWN,
+    tileSprite: game.add.sprite(tileSize*3+54, backgroundHeader+tileSize*3, 'curve')
+  }
+  
+  gameArray[3][4] = {
+    tileType: TILE_TYPES.CURVE,
+    orientation: TILE_ORIENTATIONS.CURVE.LEFT_UP,
+    tileSprite: game.add.sprite(tileSize*4+54, backgroundHeader+tileSize*3, 'curve')
+  }
+  
+  gameArray[4][0] = {
+    tileType: TILE_TYPES.END,
+    orientation: TILE_ORIENTATIONS.END.UP,
+    tileSprite: game.add.sprite(54, backgroundHeader+tileSize*4, 'end')
+  }
+  
+  gameArray[4][1] = {
+    tileType: TILE_TYPES.CURVE,
+    orientation: TILE_ORIENTATIONS.CURVE.RIGHT_DOWN,
+    tileSprite: game.add.sprite(tileSize+54, backgroundHeader+tileSize*4, 'curve')
+  }
+  
+  gameArray[4][2] = {
+    tileType: TILE_TYPES.STRAIGHT,
+    orientation: TILE_ORIENTATIONS.STRAIGHT.HORIZONTAL,
+    tileSprite: game.add.sprite(tileSize*2+54, backgroundHeader+tileSize*4, 'straight')
+  }
+  
+  gameArray[4][3] = {
+    tileType: TILE_TYPES.TEE,
+    orientation: TILE_ORIENTATIONS.TEE.DOWN,
+    tileSprite: game.add.sprite(tileSize*3+54, backgroundHeader+tileSize*4, 'tee')
+  }
+  
+  gameArray[4][4] = {
+    tileType: TILE_TYPES.END,
+    orientation: TILE_ORIENTATIONS.END.LEFT,
+    tileSprite: game.add.sprite(tileSize*4+54, backgroundHeader+tileSize*4, 'end')
+  }
+	
+	for(var i = 0; i < currentLevel.size; i++){
+		for(var j = 0; j < currentLevel.size; j++){
+			// add listener and anchor of sprite
+      var sprite = gameArray[i][j].tileSprite;
+      
+      if(sprite.key != 'begin') {
+        sprite.inputEnabled = true;
+        sprite.input.useHandCursor = true;
+      }
+      
+			sprite.events.onInputDown.add(rotateTile, sprite);
+			sprite.anchor.setTo(0.5, 0.5);
+      
+      if(sprite.key != 'cross') {
+        if(sprite.key == 'straight') {
+          sprite.angle = straightAngles[game.rnd.between(0,1)];
+        } else if(sprite.key == 'begin') {
+          sprite.angle = TILE_ORIENTATIONS.BEGIN.LEFT;
         } else {
           sprite.angle = angles[game.rnd.between(0,3)];	// randomize angle
           while(sprite.angle == gameArray[i][j].orientation) {
