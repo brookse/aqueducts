@@ -183,7 +183,7 @@ function checkWon() {
     // switch to new level
     switch (currentLevel.level) {
       case 2:
-        levelTwo();
+        game.time.events.add(Phaser.Timer.SECOND * 2, levelTwo, this);
         break;
       case 3:
         levelThree();
