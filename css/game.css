@@ -8,14 +8,11 @@
     margin: 0 auto;
 }
 
-@media (max-width: 550px) {
-  body {
-    background: "#333";
-    width: 100%;
-  }
-  
+@media (max-width: 509px) {
   #game canvas {
-    width: 100%;
+    width: auto;
+    padding: 0;
+    position: absolute;
     margin: 0;
   }
 }
