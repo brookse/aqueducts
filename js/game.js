@@ -191,10 +191,12 @@ function checkWon() {
       switch (currentLevel.level) {
         case 2:
           ws.play('splash');
+          game.add.tween(bucket).to( { alpha: 0 }, Phaser.Timer.SECOND * 2, Phaser.Easing.Linear.None, true, 0, 1000, true);
           game.time.events.add(Phaser.Timer.SECOND * 2,levelTwo,this);
           break;
         case 3:
           ws.play('splash');
+          game.add.tween(bucket).to( { alpha: 0 }, Phaser.Timer.SECOND * 2, Phaser.Easing.Linear.None, true, 0, 1000, true);
           game.time.events.add(Phaser.Timer.SECOND * 2,levelThree,this);
           break;
         case 4:
@@ -297,8 +299,6 @@ function levelOne() {
 
 function levelTwo() {
   triggered = false;
-  bucket.alpha = 0;
-  bucket.kill();
   // level size, in tiles, NxN tiles
   currentLevel.size = 3;
 	var angles = [0,90,180,270];
@@ -395,7 +395,6 @@ function levelTwo() {
 
 function levelThree() {
   triggered = false;
-  bucket.destroy();
   // level size, in tiles, NxN tiles
   currentLevel.size = 3;
 	var angles = [0,90,180,270];
