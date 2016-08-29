@@ -149,7 +149,7 @@ function checkWon() {
     
     // increase level
     currentLevel.level += 1;
-    
+    console.log('current level:',currentLevel.level);
     // switch to new level
     switch (currentLevel.level) {
       case 2:
