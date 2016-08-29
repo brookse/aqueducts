@@ -183,9 +183,9 @@ function checkWon() {
     // switch to new level
     switch (currentLevel.level) {
       case 2:
-      setTimeout(function() {
-        levelTwo();
-      }, Phaser.Timer.SECOND * 2);
+        setTimeout(function() {
+          levelTwo();
+        }, Phaser.Timer.SECOND * 2);
         break;
       case 3:
         levelThree();
