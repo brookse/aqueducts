@@ -282,7 +282,7 @@ function levelOne() {
 			// add listener and anchor of sprite
       var sprite = gameArray[i][j].tileSprite;
       
-      if(sprite.key != 'begin') {
+      if(sprite.key != 'begin' && sprite.key != 'cross') {
         sprite.inputEnabled = true;
         sprite.input.useHandCursor = true;
         sprite.events.onInputOver.add(enter, sprite);
@@ -374,9 +374,11 @@ function levelTwo() {
 			// add listener and anchor of sprite
       var sprite = gameArray[i][j].tileSprite;
       
-      if(sprite.key != 'begin') {
+      if(sprite.key != 'begin' && sprite.key != 'cross') {
         sprite.inputEnabled = true;
         sprite.input.useHandCursor = true;
+        sprite.events.onInputOver.add(enter, sprite);
+        sprite.events.onInputOut.add(leave, sprite);
       }
       
 			sprite.events.onInputDown.add(rotateTile, sprite);
@@ -470,9 +472,11 @@ function levelThree() {
 			// add listener and anchor of sprite
       var sprite = gameArray[i][j].tileSprite;
       
-      if(sprite.key != 'begin') {
+      if(sprite.key != 'begin' && sprite.key != 'cross') {
         sprite.inputEnabled = true;
         sprite.input.useHandCursor = true;
+        sprite.events.onInputOver.add(enter, sprite);
+        sprite.events.onInputOut.add(leave, sprite);
       }
       
 			sprite.events.onInputDown.add(rotateTile, sprite);
@@ -566,9 +570,11 @@ function levelFour() {
 			// add listener and anchor of sprite
       var sprite = gameArray[i][j].tileSprite;
       
-      if(sprite.key != 'begin') {
+      if(sprite.key != 'begin' && sprite.key != 'cross') {
         sprite.inputEnabled = true;
         sprite.input.useHandCursor = true;
+        sprite.events.onInputOver.add(enter, sprite);
+        sprite.events.onInputOut.add(leave, sprite);
       }
       
 			sprite.events.onInputDown.add(rotateTile, sprite);
@@ -662,9 +668,11 @@ function levelFive() {
 			// add listener and anchor of sprite
       var sprite = gameArray[i][j].tileSprite;
       
-      if(sprite.key != 'begin') {
+      if(sprite.key != 'begin' && sprite.key != 'cross') {
         sprite.inputEnabled = true;
         sprite.input.useHandCursor = true;
+        sprite.events.onInputOver.add(enter, sprite);
+        sprite.events.onInputOut.add(leave, sprite);
       }
       
 			sprite.events.onInputDown.add(rotateTile, sprite);
@@ -802,9 +810,11 @@ function levelSix() {
 			// add listener and anchor of sprite
       var sprite = gameArray[i][j].tileSprite;
       
-      if(sprite.key != 'begin') {
+      if(sprite.key != 'begin' && sprite.key != 'cross') {
         sprite.inputEnabled = true;
         sprite.input.useHandCursor = true;
+        sprite.events.onInputOver.add(enter, sprite);
+        sprite.events.onInputOut.add(leave, sprite);
       }
       
 			sprite.events.onInputDown.add(rotateTile, sprite);
@@ -941,9 +951,11 @@ function levelSeven() {
 			// add listener and anchor of sprite
       var sprite = gameArray[i][j].tileSprite;
       
-      if(sprite.key != 'begin') {
+      if(sprite.key != 'begin' && sprite.key != 'cross') {
         sprite.inputEnabled = true;
         sprite.input.useHandCursor = true;
+        sprite.events.onInputOver.add(enter, sprite);
+        sprite.events.onInputOut.add(leave, sprite);
       }
       
 			sprite.events.onInputDown.add(rotateTile, sprite);
@@ -1081,9 +1093,11 @@ function levelEight() {
 			// add listener and anchor of sprite
       var sprite = gameArray[i][j].tileSprite;
       
-      if(sprite.key != 'begin') {
+      if(sprite.key != 'begin' && sprite.key != 'cross') {
         sprite.inputEnabled = true;
         sprite.input.useHandCursor = true;
+        sprite.events.onInputOver.add(enter, sprite);
+        sprite.events.onInputOut.add(leave, sprite);
       }
       
 			sprite.events.onInputDown.add(rotateTile, sprite);
@@ -1275,9 +1289,11 @@ function levelNine() {
 			// add listener and anchor of sprite
       var sprite = gameArray[i][j].tileSprite;
       
-      if(sprite.key != 'begin') {
+      if(sprite.key != 'begin' && sprite.key != 'cross') {
         sprite.inputEnabled = true;
         sprite.input.useHandCursor = true;
+        sprite.events.onInputOver.add(enter, sprite);
+        sprite.events.onInputOut.add(leave, sprite);
       }
       
 			sprite.events.onInputDown.add(rotateTile, sprite);
@@ -1469,9 +1485,11 @@ function levelTen() {
 			// add listener and anchor of sprite
       var sprite = gameArray[i][j].tileSprite;
       
-      if(sprite.key != 'begin') {
+      if(sprite.key != 'begin' && sprite.key != 'cross') {
         sprite.inputEnabled = true;
         sprite.input.useHandCursor = true;
+        sprite.events.onInputOver.add(enter, sprite);
+        sprite.events.onInputOut.add(leave, sprite);
       }
       
 			sprite.events.onInputDown.add(rotateTile, sprite);
