@@ -138,7 +138,6 @@ playGame.prototype = {
 	}
 }
 
-
 /* below are functions for game logic */
 function rotateTile() {
   rm.play('rockmove');
@@ -237,6 +236,14 @@ function victory() {
   game.add.tween(victory).to( { alpha: 1 }, Phaser.Timer.SECOND * 2, Phaser.Easing.Linear.None, true, 0, 1000, true);
 }
 
+function enter(sprite) {
+  sprite.tint = 0xd3d3d3;
+}
+
+function leave(sprite) {
+  sprite.tint = 0xffffff;
+}
+
 /* below are setups for each level */
 function levelOne() {
   // level size, in tiles, NxN tiles
@@ -278,6 +285,8 @@ function levelOne() {
       if(sprite.key != 'begin') {
         sprite.inputEnabled = true;
         sprite.input.useHandCursor = true;
+        sprite.events.onInputOver.add(enter, sprite);
+        sprite.events.onInputOut.add(leave, sprite);
       }
       
 			sprite.events.onInputDown.add(rotateTile, sprite);
