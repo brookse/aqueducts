@@ -174,7 +174,6 @@ function checkWon() {
     for(var i = 0; i < currentLevel.size; i++){
   		for(var j = 0; j < currentLevel.size; j++){
   			// add listener and anchor of sprite
-        gameArray[i][j].tileSprite.input.useHandCursor = false;
         gameArray[i][j].tileSprite.inputEnabled = false;
   		}
     }
