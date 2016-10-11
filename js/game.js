@@ -244,6 +244,36 @@ function leave(sprite) {
   sprite.tint = 0xffffff;
 }
 
+function setupTile(tile) {
+  // add listener and anchor of sprite
+  var sprite = tile.tileSprite;
+  
+  if(sprite.key != 'begin' && sprite.key != 'cross') {
+    sprite.inputEnabled = true;
+    sprite.input.useHandCursor = true;
+    sprite.events.onInputOver.add(enter, sprite);
+    sprite.events.onInputOut.add(leave, sprite);
+  }
+  
+  sprite.events.onInputDown.add(rotateTile, sprite);
+  sprite.anchor.setTo(0.5, 0.5);
+  
+  if(sprite.key != 'cross') {
+    if(sprite.key == 'straight') {
+      sprite.angle = straightAngles[game.rnd.between(0,1)];
+    } else if(sprite.key == 'begin') {
+      sprite.angle = tile.orientation;
+    } else {
+      sprite.angle = angles[game.rnd.between(0,3)];	// randomize angle
+      while(sprite.angle == tile.orientation) {
+        sprite.angle = angles[game.rnd.between(0,3)];	// randomize angle
+      }
+    }
+  } else {
+    sprite.angle = 0;
+  }
+}
+
 /* below are setups for each level */
 function levelOne() {
   // level size, in tiles, NxN tiles
@@ -279,27 +309,7 @@ function levelOne() {
 	
 	for(var i = 0; i < currentLevel.size; i++){
 		for(var j = 0; j < currentLevel.size; j++){
-			// add listener and anchor of sprite
-      var sprite = gameArray[i][j].tileSprite;
-      
-      if(sprite.key != 'begin' && sprite.key != 'cross') {
-        sprite.inputEnabled = true;
-        sprite.input.useHandCursor = true;
-        sprite.events.onInputOver.add(enter, sprite);
-        sprite.events.onInputOut.add(leave, sprite);
-      }
-      
-			sprite.events.onInputDown.add(rotateTile, sprite);
-			sprite.anchor.setTo(0.5, 0.5);
-      
-      if(sprite.key == 'begin') {
-        sprite.angle = TILE_ORIENTATIONS.BEGIN.LEFT;
-      } else {
-        sprite.angle = angles[game.rnd.between(0,3)];	// randomize angle
-        while(sprite.angle == gameArray[i][j].orientation) {
-    			sprite.angle = angles[game.rnd.between(0,3)];	// randomize angle
-        }
-      }
+		  setupTile(gameArray[i][j]);
     }
   }
 }
@@ -371,33 +381,7 @@ function levelTwo() {
 	
 	for(var i = 0; i < currentLevel.size; i++){
 		for(var j = 0; j < currentLevel.size; j++){
-			// add listener and anchor of sprite
-      var sprite = gameArray[i][j].tileSprite;
-      
-      if(sprite.key != 'begin' && sprite.key != 'cross') {
-        sprite.inputEnabled = true;
-        sprite.input.useHandCursor = true;
-        sprite.events.onInputOver.add(enter, sprite);
-        sprite.events.onInputOut.add(leave, sprite);
-      }
-      
-			sprite.events.onInputDown.add(rotateTile, sprite);
-			sprite.anchor.setTo(0.5, 0.5);
-      
-      if(sprite.key != 'cross') {
-        if(sprite.key == 'straight') {
-          sprite.angle = straightAngles[game.rnd.between(0,1)];
-        } else if(sprite.key == 'begin') {
-          sprite.angle = TILE_ORIENTATIONS.BEGIN.LEFT;
-        } else {
-          sprite.angle = angles[game.rnd.between(0,3)];	// randomize angle
-          while(sprite.angle == gameArray[i][j].orientation) {
-      			sprite.angle = angles[game.rnd.between(0,3)];	// randomize angle
-          }
-        }
-      } else {
-        sprite.angle = 0;
-      }
+			setupTile(gameArray[i][j]);
     }
   }
 }
@@ -469,33 +453,7 @@ function levelThree() {
 	
 	for(var i = 0; i < currentLevel.size; i++){
 		for(var j = 0; j < currentLevel.size; j++){
-			// add listener and anchor of sprite
-      var sprite = gameArray[i][j].tileSprite;
-      
-      if(sprite.key != 'begin' && sprite.key != 'cross') {
-        sprite.inputEnabled = true;
-        sprite.input.useHandCursor = true;
-        sprite.events.onInputOver.add(enter, sprite);
-        sprite.events.onInputOut.add(leave, sprite);
-      }
-      
-			sprite.events.onInputDown.add(rotateTile, sprite);
-			sprite.anchor.setTo(0.5, 0.5);
-      
-      if(sprite.key != 'cross') {
-        if(sprite.key == 'straight') {
-          sprite.angle = straightAngles[game.rnd.between(0,1)];
-        } else if(sprite.key == 'begin') {
-          sprite.angle = TILE_ORIENTATIONS.BEGIN.LEFT;
-        } else {
-          sprite.angle = angles[game.rnd.between(0,3)];	// randomize angle
-          while(sprite.angle == gameArray[i][j].orientation) {
-      			sprite.angle = angles[game.rnd.between(0,3)];	// randomize angle
-          }
-        }
-      } else {
-        sprite.angle = 0;
-      }
+			setupTile(gameArray[i][j]);
     }
   }
 }
@@ -567,33 +525,7 @@ function levelFour() {
 	
 	for(var i = 0; i < currentLevel.size; i++){
 		for(var j = 0; j < currentLevel.size; j++){
-			// add listener and anchor of sprite
-      var sprite = gameArray[i][j].tileSprite;
-      
-      if(sprite.key != 'begin' && sprite.key != 'cross') {
-        sprite.inputEnabled = true;
-        sprite.input.useHandCursor = true;
-        sprite.events.onInputOver.add(enter, sprite);
-        sprite.events.onInputOut.add(leave, sprite);
-      }
-      
-			sprite.events.onInputDown.add(rotateTile, sprite);
-			sprite.anchor.setTo(0.5, 0.5);
-      
-      if(sprite.key != 'cross') {
-        if(sprite.key == 'straight') {
-          sprite.angle = straightAngles[game.rnd.between(0,1)];
-        } else if(sprite.key == 'begin') {
-          sprite.angle = TILE_ORIENTATIONS.BEGIN.DOWN;
-        } else {
-          sprite.angle = angles[game.rnd.between(0,3)];	// randomize angle
-          while(sprite.angle == gameArray[i][j].orientation) {
-      			sprite.angle = angles[game.rnd.between(0,3)];	// randomize angle
-          }
-        }
-      } else {
-        sprite.angle = 0;
-      }
+			setupTile(gameArray[i][j]);
     }
   }
 }
@@ -665,33 +597,7 @@ function levelFive() {
 	
 	for(var i = 0; i < currentLevel.size; i++){
 		for(var j = 0; j < currentLevel.size; j++){
-			// add listener and anchor of sprite
-      var sprite = gameArray[i][j].tileSprite;
-      
-      if(sprite.key != 'begin' && sprite.key != 'cross') {
-        sprite.inputEnabled = true;
-        sprite.input.useHandCursor = true;
-        sprite.events.onInputOver.add(enter, sprite);
-        sprite.events.onInputOut.add(leave, sprite);
-      }
-      
-			sprite.events.onInputDown.add(rotateTile, sprite);
-			sprite.anchor.setTo(0.5, 0.5);
-      
-      if(sprite.key != 'cross') {
-        if(sprite.key == 'straight') {
-          sprite.angle = straightAngles[game.rnd.between(0,1)];
-        } else if(sprite.key == 'begin') {
-          sprite.angle = TILE_ORIENTATIONS.BEGIN.DOWN;
-        } else {
-          sprite.angle = angles[game.rnd.between(0,3)];	// randomize angle
-          while(sprite.angle == gameArray[i][j].orientation) {
-      			sprite.angle = angles[game.rnd.between(0,3)];	// randomize angle
-          }
-        }
-      } else {
-        sprite.angle = 0;
-      }
+			setupTile(gameArray[i][j]);
     }
   }
 }
@@ -807,33 +713,7 @@ function levelSix() {
 	
 	for(var i = 0; i < currentLevel.size; i++){
 		for(var j = 0; j < currentLevel.size; j++){
-			// add listener and anchor of sprite
-      var sprite = gameArray[i][j].tileSprite;
-      
-      if(sprite.key != 'begin' && sprite.key != 'cross') {
-        sprite.inputEnabled = true;
-        sprite.input.useHandCursor = true;
-        sprite.events.onInputOver.add(enter, sprite);
-        sprite.events.onInputOut.add(leave, sprite);
-      }
-      
-			sprite.events.onInputDown.add(rotateTile, sprite);
-			sprite.anchor.setTo(0.5, 0.5);
-      
-      if(sprite.key != 'cross') {
-        if(sprite.key == 'straight') {
-          sprite.angle = straightAngles[game.rnd.between(0,1)];
-        } else if(sprite.key == 'begin') {
-          sprite.angle = TILE_ORIENTATIONS.BEGIN.DOWN;
-        } else {
-          sprite.angle = angles[game.rnd.between(0,3)];	// randomize angle
-          while(sprite.angle == gameArray[i][j].orientation) {
-      			sprite.angle = angles[game.rnd.between(0,3)];	// randomize angle
-          }
-        }
-      } else {
-        sprite.angle = 0;
-      }
+			setupTile(gameArray[i][j]);
     }
   }
 }
@@ -948,33 +828,7 @@ function levelSeven() {
 	
 	for(var i = 0; i < currentLevel.size; i++){
 		for(var j = 0; j < currentLevel.size; j++){
-			// add listener and anchor of sprite
-      var sprite = gameArray[i][j].tileSprite;
-      
-      if(sprite.key != 'begin' && sprite.key != 'cross') {
-        sprite.inputEnabled = true;
-        sprite.input.useHandCursor = true;
-        sprite.events.onInputOver.add(enter, sprite);
-        sprite.events.onInputOut.add(leave, sprite);
-      }
-      
-			sprite.events.onInputDown.add(rotateTile, sprite);
-			sprite.anchor.setTo(0.5, 0.5);
-      
-      if(sprite.key != 'cross') {
-        if(sprite.key == 'straight') {
-          sprite.angle = straightAngles[game.rnd.between(0,1)];
-        } else if(sprite.key == 'begin') {
-          sprite.angle = TILE_ORIENTATIONS.BEGIN.LEFT;
-        } else {
-          sprite.angle = angles[game.rnd.between(0,3)];	// randomize angle
-          while(sprite.angle == gameArray[i][j].orientation) {
-      			sprite.angle = angles[game.rnd.between(0,3)];	// randomize angle
-          }
-        }
-      } else {
-        sprite.angle = 0;
-      }
+			setupTile(gameArray[i][j]);
     }
   }
 }
@@ -1090,33 +944,7 @@ function levelEight() {
 	
 	for(var i = 0; i < currentLevel.size; i++){
 		for(var j = 0; j < currentLevel.size; j++){
-			// add listener and anchor of sprite
-      var sprite = gameArray[i][j].tileSprite;
-      
-      if(sprite.key != 'begin' && sprite.key != 'cross') {
-        sprite.inputEnabled = true;
-        sprite.input.useHandCursor = true;
-        sprite.events.onInputOver.add(enter, sprite);
-        sprite.events.onInputOut.add(leave, sprite);
-      }
-      
-			sprite.events.onInputDown.add(rotateTile, sprite);
-			sprite.anchor.setTo(0.5, 0.5);
-      
-      if(sprite.key != 'cross') {
-        if(sprite.key == 'straight') {
-          sprite.angle = straightAngles[game.rnd.between(0,1)];
-        } else if(sprite.key == 'begin') {
-          sprite.angle = TILE_ORIENTATIONS.BEGIN.DOWN;
-        } else {
-          sprite.angle = angles[game.rnd.between(0,3)];	// randomize angle
-          while(sprite.angle == gameArray[i][j].orientation) {
-      			sprite.angle = angles[game.rnd.between(0,3)];	// randomize angle
-          }
-        }
-      } else {
-        sprite.angle = 0;
-      }
+			setupTile(gameArray[i][j]);
     }
   }
 }
@@ -1286,33 +1114,7 @@ function levelNine() {
 	
 	for(var i = 0; i < currentLevel.size; i++){
 		for(var j = 0; j < currentLevel.size; j++){
-			// add listener and anchor of sprite
-      var sprite = gameArray[i][j].tileSprite;
-      
-      if(sprite.key != 'begin' && sprite.key != 'cross') {
-        sprite.inputEnabled = true;
-        sprite.input.useHandCursor = true;
-        sprite.events.onInputOver.add(enter, sprite);
-        sprite.events.onInputOut.add(leave, sprite);
-      }
-      
-			sprite.events.onInputDown.add(rotateTile, sprite);
-			sprite.anchor.setTo(0.5, 0.5);
-      
-      if(sprite.key != 'cross') {
-        if(sprite.key == 'straight') {
-          sprite.angle = straightAngles[game.rnd.between(0,1)];
-        } else if(sprite.key == 'begin') {
-          sprite.angle = TILE_ORIENTATIONS.BEGIN.DOWN;
-        } else {
-          sprite.angle = angles[game.rnd.between(0,3)];	// randomize angle
-          while(sprite.angle == gameArray[i][j].orientation) {
-      			sprite.angle = angles[game.rnd.between(0,3)];	// randomize angle
-          }
-        }
-      } else {
-        sprite.angle = 0;
-      }
+			setupTile(gameArray[i][j]);
     }
   }
 }
@@ -1482,33 +1284,7 @@ function levelTen() {
 	
 	for(var i = 0; i < currentLevel.size; i++){
 		for(var j = 0; j < currentLevel.size; j++){
-			// add listener and anchor of sprite
-      var sprite = gameArray[i][j].tileSprite;
-      
-      if(sprite.key != 'begin' && sprite.key != 'cross') {
-        sprite.inputEnabled = true;
-        sprite.input.useHandCursor = true;
-        sprite.events.onInputOver.add(enter, sprite);
-        sprite.events.onInputOut.add(leave, sprite);
-      }
-      
-			sprite.events.onInputDown.add(rotateTile, sprite);
-			sprite.anchor.setTo(0.5, 0.5);
-      
-      if(sprite.key != 'cross') {
-        if(sprite.key == 'straight') {
-          sprite.angle = straightAngles[game.rnd.between(0,1)];
-        } else if(sprite.key == 'begin') {
-          sprite.angle = TILE_ORIENTATIONS.BEGIN.LEFT;
-        } else {
-          sprite.angle = angles[game.rnd.between(0,3)];	// randomize angle
-          while(sprite.angle == gameArray[i][j].orientation) {
-      			sprite.angle = angles[game.rnd.between(0,3)];	// randomize angle
-          }
-        }
-      } else {
-        sprite.angle = 0;
-      }
+			setupTile(gameArray[i][j]);
     }
   }
 }
