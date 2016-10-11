@@ -245,9 +245,12 @@ function leave(sprite) {
 }
 
 function setupTile(tile) {
+	var angles = [0,90,180,270];
+  var straightAngles = [0,-90];
   // add listener and anchor of sprite
   var sprite = tile.tileSprite;
   
+  // enable clickable tiles
   if(sprite.key != 'begin' && sprite.key != 'cross') {
     sprite.inputEnabled = true;
     sprite.input.useHandCursor = true;
@@ -258,15 +261,16 @@ function setupTile(tile) {
   sprite.events.onInputDown.add(rotateTile, sprite);
   sprite.anchor.setTo(0.5, 0.5);
   
-  if(sprite.key != 'cross') {
-    if(sprite.key == 'straight') {
+  // set orientations for tile depending on type
+  if(sprite.key != 'cross') {           // cross is only one direction
+    if(sprite.key == 'straight') {      // straight only has two directions
       sprite.angle = straightAngles[game.rnd.between(0,1)];
-    } else if(sprite.key == 'begin') {
+    } else if(sprite.key == 'begin') {  // begin is set and cannot be turned
       sprite.angle = tile.orientation;
-    } else {
-      sprite.angle = angles[game.rnd.between(0,3)];	// randomize angle
+    } else {                            // everything else is randomized
+      sprite.angle = angles[game.rnd.between(0,3)];
       while(sprite.angle == tile.orientation) {
-        sprite.angle = angles[game.rnd.between(0,3)];	// randomize angle
+        sprite.angle = angles[game.rnd.between(0,3)];
       }
     }
   } else {
@@ -278,7 +282,6 @@ function setupTile(tile) {
 function levelOne() {
   // level size, in tiles, NxN tiles
   currentLevel.size = 2;
-	var angles = [0,90,180,270];
 
   gameArray[0] = [];
   gameArray[1] = [];
@@ -318,8 +321,6 @@ function levelTwo() {
   triggered = false;
   // level size, in tiles, NxN tiles
   currentLevel.size = 3;
-	var angles = [0,90,180,270];
-  var straightAngles = [0,-90];
 
   gameArray[0] = [];
   gameArray[1] = [];
@@ -390,8 +391,6 @@ function levelThree() {
   triggered = false;
   // level size, in tiles, NxN tiles
   currentLevel.size = 3;
-	var angles = [0,90,180,270];
-  var straightAngles = [0,-90];
 
   gameArray[0] = [];
   gameArray[1] = [];
@@ -462,8 +461,6 @@ function levelFour() {
   triggered = false;
   // level size, in tiles, NxN tiles
   currentLevel.size = 3;
-	var angles = [0,90,180,270];
-  var straightAngles = [0,-90];
 
   gameArray[0] = [];
   gameArray[1] = [];
@@ -534,8 +531,6 @@ function levelFive() {
   triggered = false;
   // level size, in tiles, NxN tiles
   currentLevel.size = 3;
-	var angles = [0,90,180,270];
-  var straightAngles = [0,-90];
 
   gameArray[0] = [];
   gameArray[1] = [];
@@ -606,8 +601,6 @@ function levelSix() {
   triggered = false;
   // level size, in tiles, NxN tiles
   currentLevel.size = 4;
-	var angles = [0,90,180,270];
-  var straightAngles = [0,-90];
 
   gameArray[0] = [];
   gameArray[1] = [];
@@ -722,8 +715,6 @@ function levelSeven() {
   triggered = false;
   // level size, in tiles, NxN tiles
   currentLevel.size = 4;
-	var angles = [0,90,180,270];
-  var straightAngles = [0,-90];
 
   gameArray[0] = [];
   gameArray[1] = [];
@@ -837,8 +828,6 @@ function levelEight() {
   triggered = false;
   // level size, in tiles, NxN tiles
   currentLevel.size = 4;
-	var angles = [0,90,180,270];
-  var straightAngles = [0,-90];
 
   gameArray[0] = [];
   gameArray[1] = [];
@@ -953,8 +942,6 @@ function levelNine() {
   triggered = false;
   // level size, in tiles, NxN tiles
   currentLevel.size = 5;
-	var angles = [0,90,180,270];
-  var straightAngles = [0,-90];
 
   gameArray[0] = [];
   gameArray[1] = [];
@@ -1123,8 +1110,6 @@ function levelTen() {
   triggered = false;
   // level size, in tiles, NxN tiles
   currentLevel.size = 5;
-	var angles = [0,90,180,270];
-  var straightAngles = [0,-90];
 
   gameArray[0] = [];
   gameArray[1] = [];
