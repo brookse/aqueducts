@@ -1,5 +1,4 @@
-# aqueducts
-
+![Aqueducts](https://github.com/brookse/aqueducts/blob/master/assets/images/title.png)<br>
 Aqueducts is a short simple puzzle game made for [Ludum Dare 36 (theme: Ancient Technology)](http://ludumdare.com/compo/) by [Lyzzi Brooks](https://twitter.com/Lyzzi_Lightyear) and Adam Marchetti using [Phaser.io](http://phaser.io/).
 
 Goal: Bring water from the lake to the town by connecting them via aqueducts. 
